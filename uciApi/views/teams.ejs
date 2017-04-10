@@ -8,8 +8,12 @@
     <h1><%= title %></h1>
     <ul>
     <% for(var i=0; i<arrayTeam.length; i++) {%>
-      <li><%= arrayTeam[i].name %></li>
+      <li><a href="<%= arrayTeam[i].link %>"><%= arrayTeam[i].name %></a></li>
+      <a href="<%= arrayTeam[i].link %>"><img src="<%= arrayTeam[i].img %>"></a>
       <% } %>
+      <br>
+      <br>
+      <li> <a href="/">BACK</a>
       </ul>
     <p>Created by <a href="">Enrike Gonzalo Legarra</a></p>
     <p>Web scraping<a href="http://www.procyclingstats.com/"><strong> procyclingstats</strong></a></p>
