@@ -5,25 +5,26 @@ var Xray = require("x-ray");
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   var xray = new Xray();
+  var arrayTeam = [];
   xray(`http://www.procyclingstats.com/teams`, `.wrapper`, {
-    title: ['.black'],
+    name: ['.black'],
     link: ['.black@href'],
     img: ['img@src']
   })(function(err, obj, team) {
-    var team = new Object();
     for (var i = 0; i < 18; i++) {
-      team["title"] = obj.title[i]
+      var team = new Object();
+      team["name"] = obj.name[i]
       team["link"] = obj.link[i]
       team["img"] = obj.img[i + 1]
-      console.log("-----------------------------------");
-      console.log(team.title);
-      console.log(team.link);
-      console.log(team.img);
-      console.log("-----------------------------------");
+      arrayTeam.push(team);
     }
-
+    console.log(arrayTeam);
+    res.render('teams', {
+      title: 'Men World Tour',
+      arrayTeam: arrayTeam
+    });
   })
-  res.send('UCI MEN WorldTour Team');
 });
+
 
 module.exports = router;
